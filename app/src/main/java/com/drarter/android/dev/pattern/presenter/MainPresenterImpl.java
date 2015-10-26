@@ -27,4 +27,29 @@ public class MainPresenterImpl extends Presenter<MainView> {
             getView().onUpdateSpeed(this.vehicle.getSpeed());
         }
     }
+
+    @Override
+    public void onCreate() {
+
+    }
+
+    @Override
+    public void onResume() {
+
+    }
+
+    @Override
+    public void onPause() {
+
+    }
+
+    @Override
+    public void onStop() {
+
+    }
+
+    @Override
+    public void onDestroy() {
+
+    }
 }

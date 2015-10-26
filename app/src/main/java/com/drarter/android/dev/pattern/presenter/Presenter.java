@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.drarter.android.dev.pattern.view.View;
 
-public abstract class Presenter<V extends View> {
+public abstract class Presenter<V extends View> implements ViewListener{
 
     protected V view;
 

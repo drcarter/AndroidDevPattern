@@ -1,19 +1,18 @@
 package com.drarter.android.dev.pattern;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.drarter.android.dev.pattern.base.activity.BaseActivity;
 import com.drarter.android.dev.pattern.presenter.MainPresenterImpl;
+import com.drarter.android.dev.pattern.presenter.Presenter;
 import com.drarter.android.dev.pattern.view.MainView;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity implements MainView {
+public class MainActivity extends BaseActivity implements MainView {
 
     @Bind(R.id.text_result_speed)
     TextView textResultSpeed;
@@ -21,19 +20,24 @@ public class MainActivity extends AppCompatActivity implements MainView {
     private MainPresenterImpl presenter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+    protected int getContentViewResource() {
+        return R.layout.activity_main;
+    }
 
+    @Override
+    protected void onInit() {
         presenter = new MainPresenterImpl();
         presenter.bindView(this);
     }
 
     @Override
+    protected Presenter getViewListener() {
+        return this.presenter;
+    }
+
+    @Override
     protected void onDestroy() {
         presenter.unbindView(this);
-        ButterKnife.unbind(this);
         super.onDestroy();
     }
 
